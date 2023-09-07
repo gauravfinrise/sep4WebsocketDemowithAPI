@@ -22,24 +22,24 @@ class MySyncConsumer(SyncConsumer):
         })
 
     def websocket_receive(self, event):
-        print('message received from client....', event['text'])
-        print('type of message received from client....', type(event['text']))
+        # print('message received from client....', event['text'])
+        # print('type of message received from client....', type(event['text']))
         async_to_sync(self.channel_layer.group_send)('programmers',{
             'type':'chat.message',
             'message':event['text']
         })
     def chat_message(self, event):
-        print('Actual data...', event['message'])
+        # print('Actual data...', event['message'])
         self.send({
             'type':'websocket.send',
             'text':event['message']
         })
 
     def websocket_disconnect(self, event):
-        print('websocket disconnected....', event)
+        # print('websocket disconnected....', event)
 
-        print('channel_layer...', self.channel_layer) #getdefault channel layer from project 
-        print('channel_name...', self.channel_name) #getdefault channel layer name from project 
+        # print('channel_layer...', self.channel_layer) #getdefault channel layer from project 
+        # print('channel_name...', self.channel_name) #getdefault channel layer name from project 
 
         async_to_sync(self.channel_layer.group_discard)('programmers', self.channel_name)
         raise StopConsumer()
@@ -51,14 +51,13 @@ def get_group_by_name(group_name):
 class MyAsyncConsumer(AsyncConsumer):
    
     async def websocket_connect(self, event):
-        print('websocket connected....', event)
-        print('channel_layer...', self.channel_layer) #getdefault channel layer from project 
-        print('channel_name...', self.channel_name) #getdefault channel layer name from project 
-
-        print("group name....",self.scope['url_route']['kwargs']['groupname'])
+        # print('websocket connected....', event)
+        # print('channel_layer...', self.channel_layer) #getdefault channel layer from project 
+        # print('channel_name...', self.channel_name) #getdefault channel layer name from project 
+        # print("group name....",self.scope['url_route']['kwargs']['groupname'])
         self.group_name = self.scope['url_route']['kwargs']['groupname']
-        print("===============================",self.group_name)
-        print("===============================",self.channel_name)
+        # print("===============================",self.group_name)
+        # print("===============================",self.channel_name)
         # channelname = self.channel_name
 
         # add channel in new or existing group
@@ -74,25 +73,25 @@ class MyAsyncConsumer(AsyncConsumer):
             'text':json.dumps({"groupname":self.channel_name})
         })
 
-        print("asdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdgsg ========= ",self.group_name)
+        # print("asdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdgsg ========= ",self.group_name)
         # await self.send(text_data=json.dumps({'channel_name': self.channel_name}))
 
     async def websocket_receive(self, event):
-        print('message received from client....', event['text'])
-        print('type of message received from client....', type(event['text']))
+        # print('message received from client....', event['text'])
+        # print('type of message received from client....', type(event['text']))
         data = json.loads(event['text'])
-        print("=============================-----------------=================")
-        print("data.......", data)
-        print("type of data.......", type(data))
-        print("chart messsage.......", data['msg'])
-        print("=============================-----------------=================")
+        # print("=============================-----------------=================")
+        # print("data.......", data)
+        # print("type of data.......", type(data))
+        # print("chart messsage.......", data['msg'])
+        # print("=============================-----------------=================")
         
         # Find group object
         group = await get_group_by_name(self.group_name)
         # group = await database_sync_to_async(Group.objects.get)(name=self.group_name)
         # group = await sync_to_async(Group.objects.get)(name=self.group_name)
-        print(self.scope['user'])
-        print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",group)
+        # print(self.scope['user'])
+        # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",group)
         if self.scope['user'].is_authenticated:
             #create new chat object
             chat = Chat(
@@ -105,24 +104,23 @@ class MyAsyncConsumer(AsyncConsumer):
                 'message':event['text']
             })
         else:
-            print("=======================================================================================")
+            # print("=======================================================================================")
             self.send({
                 'type':'websocket.send',
                 'text':json.dumps({"msg":"Login required"})
                 # 'text': "Login required"
             })
     async def chat_message(self, event):
-        print('Actual data...', event['message'])
+        # print('Actual data...', event['message'])
         await self.send({
             'type':'websocket.send',
             'text':event['message']
         })
 
     async def websocket_disconnect(self, event):
-        print('websocket disconnected....', event)
-
-        print('channel_layer...', self.channel_layer) #getdefault channel layer from project 
-        print('channel_name...', self.channel_name) #getdefault channel layer name from project 
+        # print('websocket disconnected....', event)
+        # print('channel_layer...', self.channel_layer) #getdefault channel layer from project 
+        # print('channel_name...', self.channel_name) #getdefault channel layer name from project 
 
         await self.channel_layer.group_discard(self.group_name, self.channel_name)
         raise StopConsumer()

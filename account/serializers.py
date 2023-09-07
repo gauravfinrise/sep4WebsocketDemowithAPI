@@ -12,8 +12,12 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         return user
 
-class UserLoginSerializer(serializers.ModelSerializer):
-    username = serializers.CharField(max_length = 255)
-    class Meta:
-        model = User
-        fields = ['username', 'password']
+# class UserLoginSerializer(serializers.ModelSerializer):
+#     username = serializers.CharField(max_length = 255)
+#     class Meta:
+#         model = User
+#         fields = ['username', 'password']
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(write_only = True)
