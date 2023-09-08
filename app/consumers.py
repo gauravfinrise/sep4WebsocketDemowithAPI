@@ -75,7 +75,6 @@ class MyAsyncConsumer(AsyncConsumer):
 
         # print("asdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdfgsdgsg ========= ",self.group_name)
         # await self.send(text_data=json.dumps({'channel_name': self.channel_name}))
-
     async def websocket_receive(self, event):
         # print('message received from client....', event['text'])
         # print('type of message received from client....', type(event['text']))
@@ -86,7 +85,7 @@ class MyAsyncConsumer(AsyncConsumer):
         # print("chart messsage.......", data['msg'])
         # print("=============================-----------------=================")
         
-        # Find group object
+        # Find group object                       
         group = await get_group_by_name(self.group_name)
         # group = await database_sync_to_async(Group.objects.get)(name=self.group_name)
         # group = await sync_to_async(Group.objects.get)(name=self.group_name)

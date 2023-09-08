@@ -6,19 +6,42 @@
     <title>chat app</title>
 </head>
 <body>
-    <textarea name="" id="chat-log" cols="100" rows="20">
-        {% for chat in chats %}
-        {{chat.content}}
-        {% endfor %}
-    </textarea><br>
-    <input type="text" id="chat-message-input" size="100"><br>
-    <input type="button" value="Send" id="chat-message-submit">
+    <div class="container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
+        
+        {% if group_name %}
+    <p>Hello, {{ group_name }}!</p>
+    {% else %}
+    <p>No username provided.</p>
+    {% endif %}
+        <!-- <div class="profile">
+            {{context}}
+        </div> -->
 
-    <div id="channel-name">Channel Name: Loading...</div>
-    <!-- {{channel_name}} -->
-
-    <!-- <h1>Channel Name: <span id="channelName">Loading...</span></h1> -->
-
+        <div class="msg-container" style="height: 400px; width: 822px; border: black solid 1px; overflow-y: auto;">
+            <div class="messages" style="padding-left: 35px; padding-top: 15px;">
+                {% for chat in chats %}
+                    <div class="item" style="margin-top: 10px; padding-left: 10px; height: 30px; padding-top: 10px;  margin-right: 5%; background-color: rgb(252, 182, 182);">
+                        {{chat.content}}
+                    </div> 
+                {% endfor %}
+            </div>
+        </div>
+        <!-- <textarea name="" id="chat-log" cols="89" rows="20" style="margin-top: 10px;">
+            <span style="background-color: brown;">
+                {% for chat in chats %}
+                    {{chat.content}}
+                {% endfor %}
+            </span>    
+        </textarea><br> -->
+        <input type="text" id="chat-message-input" size="100" placeholder="Enter your message" style="height: 40px; width: 820px; margin-top: 10px; font-size: 16px;"><br>
+        <input type="button" value="Send" id="chat-message-submit" style="margin-top: 10px; background-color: rgb(176, 176, 255); width: 150px; height: 40px;">
+    
+        <!-- <div id="channel-name">Channel Name: Loading...</div> -->
+        <!-- {{channel_name}} -->
+    
+        <!-- <h1>Channel Name: <span id="channelName">Loading...</span></h1> -->
+    
+    </div>
     {{groupname | json_script:"group-name"}}
     <script>
         

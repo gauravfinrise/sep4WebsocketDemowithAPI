@@ -4,7 +4,7 @@ from .import views
 
 
 urlpatterns = [
-    path('<str:group_name>/', views.index),
-    path('acc/', include('account.urls'))
+    path('<str:group_name>/', views.index , name='group_index'),
+    # path('acc/', include('account.urls'))
     # path('register/', UserRegistrationView.as_view(), name='register')
-]
+] 
