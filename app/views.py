@@ -9,7 +9,7 @@ from rest_framework.response import Response
 # Create your views here.
 
 def index(request, group_name):
-    print("Geoup name ... ", group_name)
+    print("Group name ... ", group_name)
     group = Group.objects.filter(name = group_name).first()
     chats =[]
     if group:
