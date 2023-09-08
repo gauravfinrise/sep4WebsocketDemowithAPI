@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>chat app</title>
+    <style>
+     
+    </style>
 </head>
 <body>
     <div class="container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
@@ -13,11 +16,12 @@
     {% else %}
     <p>No username provided.</p>
     {% endif %}
-        <!-- <div class="profile">
+        <div class="profile">
             {{context}}
-        </div> -->
+        </div>
 
-        <div class="msg-container" style="height: 400px; width: 822px; border: black solid 1px; overflow-y: auto;">
+
+        <!-- <div class="msg-container" style="height: 400px; width: 822px; border: black solid 1px; overflow-y: auto;">
             <div class="messages" style="padding-left: 35px; padding-top: 15px;">
                 {% for chat in chats %}
                     <div class="item" style="margin-top: 10px; padding-left: 10px; height: 30px; padding-top: 10px;  margin-right: 5%; background-color: rgb(252, 182, 182);">
@@ -25,14 +29,13 @@
                     </div> 
                 {% endfor %}
             </div>
-        </div>
-        <!-- <textarea name="" id="chat-log" cols="89" rows="20" style="margin-top: 10px;">
-            <span style="background-color: brown;">
+        </div> -->
+
+        <textarea name="" id="chat-log" cols="89" rows="20" style="margin-top: 10px;">
                 {% for chat in chats %}
-                    {{chat.content}}
-                {% endfor %}
-            </span>    
-        </textarea><br> -->
+                    {{ chat.content }}
+                {% endfor %}   
+        </textarea><br>
         <input type="text" id="chat-message-input" size="100" placeholder="Enter your message" style="height: 40px; width: 820px; margin-top: 10px; font-size: 16px;"><br>
         <input type="button" value="Send" id="chat-message-submit" style="margin-top: 10px; background-color: rgb(176, 176, 255); width: 150px; height: 40px;">
     
@@ -59,11 +62,11 @@
         ws.onmessage = function(event){
             console.log('message received from server', event.data);
             const data = JSON.parse(event.data) // string to js object
-            const groupName = data.groupname;
+            const groupName = data.grou_pname;
             console.log(groupName);
             console.log('parsed data.....', data);
             console.log('type of parsed data.....', typeof(data));
-            console.log('Actual message ....', data);
+            console.log('Actual message ....', data.msg);
             // const chatLog = document.querySelector('#chat-log');
             // const msg = data.msg
             // // Check if the message is the "Login required" message
@@ -75,6 +78,8 @@
             //     chatLog.value += (msg + '\n');
             // }
             document.querySelector('#chat-log').value +=(data.msg + '\n')
+            const element = document.querySelector('#chat-log');
+            const tvalue =  element.style.backgroundColor = 'lightblue';
 
 
         }

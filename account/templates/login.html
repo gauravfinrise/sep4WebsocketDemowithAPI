@@ -2,23 +2,19 @@
 <html>
 <head>
     <title>Login</title>
+
 </head>
 <body>
-    <h2>Login</h2>
-    <form method="post" action="{% url 'account:login' %}">
-        {% csrf_token %}
-        <!-- {% if username %}
-    <p>Hello, {{ username }}!</p>
-    {% else %}
-    <p>No username provided.</p>
-    {% endif %} -->
-        <label for="id_username">Username:</label>
-        <input type="text" id="id_username" name="username">
+    <div style="border: 3px solid black; height: 200px; width: 300px; display: flex; flex-direction: column;justify-content: center; margin-left: 40%;margin-top: 10%;">
+        <h2 style="text-align: center;">Login</h2>
+    <form method="post" action="{% url 'account:login' %}" style="text-align: center;">
+        {% csrf_token %}  
+        <input type="text" style="margin-bottom: 10px; height: 25px; width: 275px;" placeholder="Enter username" id="id_username inpute" name="username">
         <br>
-        <label for="id_password">Password:</label>
-        <input type="password" id="id_password" name="password">
+        <input type="password" style="margin-bottom: 10px; height: 25px; width: 275px;" placeholder="Enter password" id="id_password inpute" name="password">
         <br>
-        <input type="submit" value="Login">
+        <input type="submit" style=" height: 30px; width: 100px;" value="Login">
     </form>
+    </div>
 </body>
 </html>
