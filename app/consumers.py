@@ -116,6 +116,7 @@ class MyAsyncConsumer(AsyncConsumer):
             'text':event['message']
         })
 
+
     async def websocket_disconnect(self, event):
         # print('websocket disconnected....', event)
         # print('channel_layer...', self.channel_layer) #getdefault channel layer from project 

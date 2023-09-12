@@ -23,7 +23,7 @@
         <h1>Username: {{groupname}}</h1>
 
 
-        <!-- <div class="msg-container" style="height: 400px; width: 822px; border: black solid 1px; overflow-y: auto;">
+        <div class="msg-container" id="chat-log" style="height: 400px; width: 822px; border: black solid 1px; overflow-y: auto;">
             <div class="messages" style="padding-left: 35px; padding-top: 15px;">
                 {% for chat in chats %}
                     <div class="item" style="margin-top: 10px; padding-left: 10px; height: 30px; padding-top: 10px;  margin-right: 5%; background-color: rgb(252, 182, 182);">
@@ -31,7 +31,7 @@
                     </div> 
                 {% endfor %}
             </div>
-        </div> -->
+        </div>
 
         <h2 style="margin-bottom: 2px;">Notifications :</h2>
         <ul style="margin-top: 2px;">
@@ -41,11 +41,11 @@
         </ul>
         <h1>=======================================================================</h1>
 
-        <textarea name="" id="chat-log" cols="89" rows="20" style="margin-top: 10px;">
+        <!-- <textarea name="" id="chat-log" cols="89" rows="20" style="margin-top: 10px;">
                 {% for chat in chats %}
                     {{ chat.content }}
                 {% endfor %}   
-        </textarea><br>
+        </textarea><br> -->
         <input type="text" id="chat-message-input" size="100" placeholder="Enter your message" style="height: 40px; width: 820px; margin-top: 10px; font-size: 16px;"><br>
         <input type="button" value="Send" id="chat-message-submit" style="margin-top: 10px; background-color: rgb(176, 176, 255); width: 150px; height: 40px;">
     
@@ -87,7 +87,7 @@
             //     // Display regular chat messages in the chat log
             //     chatLog.value += (msg + '\n');
             // }
-            document.querySelector('#chat-log').value +=(data.msg + '\n')
+            document.querySelector('#chat-log').innerHTML +=(data.msg + '<br>');
             const element = document.querySelector('#chat-log');
             const tvalue =  element.style.backgroundColor = 'lightblue';
 
