@@ -16,6 +16,13 @@ def send_notification_on_user_registration(sender, instance, created, **kwargs):
         for user in users:
             Notification.objects.create(user=user, message=message)
 
+# @receiver(user_logged_in)
+# def display_notification(sender, request, user, **kwargs):
+#     unread_notifications = Notification.objects.filter(user=user, seen=False)
+#     if unread_notifications.exists():
+#         message = f"You have {unread_notifications.count()} unread notifications."
+#         message.info(request, message)
+
 # @receiver(user_logged_out)
 # def update_last_login(sender, request, user, **kwargs):
 #     user_profile, created = UserProfile.objects.get_or_create(user=user)

@@ -11,14 +11,16 @@
 <body>
     <div class="container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
         
-        {% if group_name %}
+        <!-- {% if group_name %}
     <p>Hello, {{ group_name }}!</p>
     {% else %}
     <p>No username provided.</p>
     {% endif %}
         <div class="profile">
             {{context}}
-        </div>
+        </div> -->
+
+        <h1>Username: {{groupname}}</h1>
 
 
         <!-- <div class="msg-container" style="height: 400px; width: 822px; border: black solid 1px; overflow-y: auto;">
@@ -30,6 +32,14 @@
                 {% endfor %}
             </div>
         </div> -->
+
+        <h2 style="margin-bottom: 2px;">Notifications :</h2>
+        <ul style="margin-top: 2px;">
+            {% for notification in notifications %}
+                <li>{{ notification.message }}</li>
+            {% endfor %}
+        </ul>
+        <h1>=======================================================================</h1>
 
         <textarea name="" id="chat-log" cols="89" rows="20" style="margin-top: 10px;">
                 {% for chat in chats %}

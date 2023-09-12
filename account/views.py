@@ -9,7 +9,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from .models import UserProfile
 # , UserLoginSerializer
-
+from .models import Notification
 from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
@@ -58,7 +58,12 @@ class LoginView(APIView):
                 # return Response({'msg':'login successful'}, status=status.HTTP_200_OK)
                 # print('====================================================================================================',username)
                 context = {'username':username}
+                # notifications = Notification.objects.filter(user=user)
+                # print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.", notifications)
+
                 return redirect('group_index', group_name = username)
+                # return redirect('group_index', {'notifications':notifications , 'group_name' : username})
+
             else:
                 return Response({'errors':{'non_field_errors':['username or password is not valid']}}, status= status.HTTP_404_NOT_FOUND)
         return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)

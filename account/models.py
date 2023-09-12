@@ -13,7 +13,6 @@ class UserProfile(models.Model):
     
 # new_user_registerd = Signal
 
-
 class Notification(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     message = models.TextField()
