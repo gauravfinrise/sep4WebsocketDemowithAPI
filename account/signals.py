@@ -7,6 +7,9 @@ from .models import Notification
 from .models import UserProfile
 from django.utils import timezone
 
+from channels.layers import get_channel_layer
+from asgiref.sync import async_to_sync
+
 @receiver(post_save, sender=User)
 def send_notification_on_user_registration(sender, instance, created, **kwargs):
     if created:
@@ -15,6 +18,20 @@ def send_notification_on_user_registration(sender, instance, created, **kwargs):
         users = User.objects.exclude(id = instance.id)
         for user in users:
             Notification.objects.create(user=user, message=message)
+
+@receiver(post_save, sender = User)
+def notify_new_user_registration(sender, instance, created, **kwargs):
+    if created:
+        group_name = "test_consumer_group"
+
+        channel_layer = get_channel_layer()
+        async_to_sync(channel_layer.group_send)(
+            group_name,
+            {
+                'type':'send_notification',
+                'message': f"New user '{instance.username}' registered."
+            }
+        )
 
 # @receiver(user_logged_in)
 # def display_notification(sender, request, user, **kwargs):
