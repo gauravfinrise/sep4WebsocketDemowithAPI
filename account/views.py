@@ -15,6 +15,7 @@ from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 class UserRegistrationAPIView(APIView):
     def post(self, request):
+        print("==============================================")
         serializer = UserRegistrationSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()

@@ -18,5 +18,29 @@
 #         return attrs
 
 #     def create(self, validated_data):
-#         return User.objects.create_user(**validated_data)
-#     # 
+#         return User.objects.create_user(**validated_data# from .models import *
+
+# class UserRegistrationSerializer(serializers.ModelSerializer):
+#     passwoed2 = serializers.CharField(style = {'input_type' : 'password'}
+#                                       ,write_only = True)
+#     class Meta:
+#         model = User
+#         fields = ['email', 'name', 'paswword', 'password2', 'tc']
+#         extra_kwargs = {'password':{'write_only':True}})
+# # from .models import *# from .models import *
+
+# class UserRegistrationSerializer(serializers.ModelSerializer):
+#     passwoed2 = serializers.CharField(style = {'input_type' : 'password'}
+#                                       ,write_only = True)
+#     class Meta:
+#         model = User
+#         fields = ['email', 'name', 'paswword', 'password2', 'tc']
+#         extra_kwargs = {'password':{'write_only':True}}
+
+# class UserRegistrationSerializer(serializers.ModelSerializer):
+#     passwoed2 = serializers.CharField(style = {'input_type' : 'password'}
+#                                       ,write_only = True)
+#     class Meta:
+#         model = User
+#         fields = ['email', 'name', 'paswword', 'password2', 'tc']
+#         extra_kwargs = {'password':{'write_only':True}}

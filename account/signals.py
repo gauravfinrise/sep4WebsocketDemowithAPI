@@ -23,7 +23,6 @@ def send_notification_on_user_registration(sender, instance, created, **kwargs):
 def notify_new_user_registration(sender, instance, created, **kwargs):
     if created:
         group_name = "test_consumer_group"
-
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(
             group_name,

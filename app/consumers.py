@@ -72,7 +72,6 @@ class MyAsyncConsumer(AsyncConsumer):
             # 'channel_name':channelname
         })
 
-        
         await self.send({
             'type':'websocket.send',
             'text':json.dumps({"groupname":self.channel_name})

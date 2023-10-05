@@ -70,13 +70,11 @@
             const groupName = data.grou_pname;
             console.log("befor decoding====", data.msg);
 
-            // try{
+            try{
                     const byteValues = Object.values(data.msg);
                     const encryptedMessage = new Uint8Array(byteValues);
                     const decryptedMessage = await decryptMessage(privateKey, encryptedMessage);
                     console.log("Decrypted message:", decryptedMessage);
-
-
                     // const tempmsg = await decryptMessage(data.msg)
                     // console.log("================ encoded message: ", tempmsg);
                     // console.log("================ 0000000000000000000000000000000");
@@ -85,9 +83,9 @@
                     const element = document.querySelector('#chat-log');
                     const tvalue =  element.style.backgroundColor = 'lightblue';
                 
-            // }catch (error) {
-            //     console.error('Error decrypting message:', error);
-            // }
+            }catch (error) {
+                console.error('Error decrypting message:', error);
+            }
             // const tempmsg = await decryptMessage(data.msg)
             // // console.log("================ encoded message: ", tempmsg);
             // console.log("================ 0000000000000000000000000000000");
